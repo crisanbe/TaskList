@@ -7,21 +7,23 @@ Proyecto
 
 # Características principales
 1. Kotlin
-1. Arquitectura MVI -
-1. Jetpack Compose
-1. MutableStateOf
-1. UIEvent
-1.   Realm - Realm es una base de datos móvil que se ejecuta directamente en teléfonos, tabletas o dispositivos portátiles. Este repositorio contiene el código fuente de la versión Java de Realm, que actualmente solo se ejecuta en Android.
-1. Koin
-1. Navigation Compose
-1. Corrutinas
-1. Coil - Gestion de carga de imagenes
-1. ArrowKt - Arrow comprende diferentes bibliotecas, cada una de las cuales mejora o amplía una biblioteca de uso común en el ecosistema de Kotlin o una característica particular del lenguaje Kotlin.
-    - Toggle between themes
-
+2. Arquitectura MVI -  (Model-View-Intent)
+3. Jetpack Compose - UI
+4. MutableStateOf -  herramienta fundamental para administrar el estado y activar actualizaciones de la interfaz de usuario.
+5. UIEvent - Son el puente entre la interacción del usuario y la lógica de la aplicación, proporcionando una forma clara y concisa de representar las acciones del usuario al sistema.
+6. Realm - Realm es una base de datos móvil que se ejecuta directamente en teléfonos, tabletas o dispositivos portátiles. Este repositorio contiene el código fuente de la versión Java de Realm, que actualmente solo se ejecuta en Android.
+7. Koin - Injeccionde dependencia
+8. Navigation Compose - grafo de navegacion en la UI
+9. Corrutinas - son una característica de Kotlin que permite escribir código asíncrono de manera más concisa y legible.
+10. Coil - Gestion de carga de imagenes
+11. ArrowKt - Arrow comprende diferentes bibliotecas, cada una de las cuales mejora o amplía una biblioteca de uso común en el ecosistema de Kotlin o una característica particular del lenguaje Kotlin.
+12. OrbitMVI - ![img.png](img.png) - 
+    Construido sobre RxJava para minimizar la cantidad de código personalizado
+    DSL fácil de seguir para MVI, comience con solo unas pocas líneas de código
+    Diseñado para Android, ¡pero también puede ejecutarse sin ninguna interfaz de usuario!
+    Threading predecible y cancelación automática de suscripción
 # Funciones de composición
-1. Snackbars
-3. Theming /Modo Oscuro
+
 4. Fonts
 5. Colors
     - creating
@@ -34,6 +36,7 @@ Proyecto
 
 # Pruebas
 1. Junit
+1. Mockito
 
 #  Flow?
 1. Flow
@@ -49,6 +52,7 @@ Proyecto
 # References
 1. https://github.com/realm/realm-java
 1. https://github.com/orbit-mvi/orbit-mvi
+2. https://github.com/babylonhealth/orbit-mvi/blob/main/readme-old.md
 1. https://old.arrow-kt.io/docs/core/
 1. https://developer.android.com/jetpack/compose/state
 2. https://medium.com/@VolodymyrSch/android-simple-mvi-implementation-with-jetpack-compose-5ee5d6fc4908
