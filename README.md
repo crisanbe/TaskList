@@ -5,11 +5,9 @@ Una App para crear tareas con dos sesiones completas y pendientes.,
 Proyecto
 [https://i.imgur.com/ILRKvafl.png](https://i.imgur.com/396ZlMZl.png).
 
-![](https://i.imgur.com/YS54hA9h.png)
-
 # Características principales
 1. Kotlin
-1. Arquitectura MVI
+1. Arquitectura MVI - 
 1. Jetpack Compose
 1. MutableStateOf
 1. UIEvent
@@ -17,8 +15,8 @@ Proyecto
 1. Koin
 1. Navigation Compose
 1. Corrutinas
-1. Coil
-1. ArrowKt 
+1. Coil - Gestion de carga de imagenes
+1. ArrowKt - Arrow comprende diferentes bibliotecas, cada una de las cuales mejora o amplía una biblioteca de uso común en el ecosistema de Kotlin o una característica particular del lenguaje Kotlin.
     - Toggle between themes
 
 # Funciones de composición
