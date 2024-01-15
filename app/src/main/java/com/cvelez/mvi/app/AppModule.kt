@@ -1,24 +1,17 @@
 package com.cvelez.mvi.app
 
-import dagger.Module
-import dagger.Provides
-import dagger.hilt.InstallIn
-import dagger.hilt.components.SingletonComponent
 import io.realm.RealmConfiguration
+import org.koin.dsl.module
 
-@Module
-@InstallIn(SingletonComponent::class)
-interface AppModule {
+val appModule = module {
 
-    companion object {
+    single { provideRealmDefaultConfiguration() }
+}
 
-        @Provides
-        fun provideRealmDefaultConfiguration(): RealmConfiguration {
-            return RealmConfiguration.Builder()
-                .name("mviSampleDb")
-                .allowQueriesOnUiThread(true)
-                .allowWritesOnUiThread(true)
-                .build()
-        }
-    }
+private fun provideRealmDefaultConfiguration(): RealmConfiguration {
+    return RealmConfiguration.Builder()
+        .name("mviTaskListDb")
+        .allowQueriesOnUiThread(true)
+        .allowWritesOnUiThread(true)
+        .build()
 }

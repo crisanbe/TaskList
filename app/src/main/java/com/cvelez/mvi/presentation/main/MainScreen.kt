@@ -61,11 +61,12 @@ import coil.request.ImageRequest
 import com.cvelez.mvi.base.TimeCapsule
 import com.cvelez.mvi.utils.debugInputPointer
 import com.cvelez.mvi.R
+import org.koin.androidx.compose.koinViewModel
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun MainScreen(
-    viewModel: MainViewModel
+    viewModel: MainViewModel = koinViewModel()
 ) {
     val state by viewModel.state.collectAsState()
     val scaffoldState = rememberScaffoldState()

@@ -1,18 +1,12 @@
 package com.cvelez.mvi.coroutines
 
-import dagger.Module
-import dagger.Provides
-import dagger.hilt.InstallIn
-import dagger.hilt.components.SingletonComponent
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
+import org.koin.dsl.module
 
-@Module
-@InstallIn(SingletonComponent::class)
-class DispatcherModule {
+val dispatcherModule = module {
 
-    @Provides
-    fun provideDispatcher(): CoroutineDispatcher {
-        return Dispatchers.Default
+    single<CoroutineDispatcher> {
+        Dispatchers.Default
     }
 }

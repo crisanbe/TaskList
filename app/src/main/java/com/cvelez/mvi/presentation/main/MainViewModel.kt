@@ -5,14 +5,12 @@ import com.cvelez.mvi.base.BaseViewModel
 import com.cvelez.mvi.base.Reducer
 import com.cvelez.mvi.base.TimeCapsule
 import com.cvelez.mvi.domain.use_case.IGetTaskListUseCase
-import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
-@HiltViewModel
-class MainViewModel @Inject constructor(
+
+class MainViewModel (
     private val getTodos: IGetTaskListUseCase,
     private val dispatcher: CoroutineDispatcher,
     private val viewMapper: MainScreenViewDataMapper,

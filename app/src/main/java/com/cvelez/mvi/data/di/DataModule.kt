@@ -2,18 +2,12 @@ package com.cvelez.mvi.data.di
 
 import com.cvelez.mvi.data.TaskListDataSource
 import com.cvelez.mvi.data.TaskListLocalDataSource
-import dagger.Binds
-import dagger.Module
-import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ViewModelComponent
-import dagger.hilt.android.scopes.ViewModelScoped
+import org.koin.dsl.bind
+import org.koin.dsl.binds
+import org.koin.dsl.module
 
-@Module
-@InstallIn(ViewModelComponent::class)
-interface DataModule {
+val dataModule = module {
 
-    @Binds
-    @ViewModelScoped
-    fun bindTaskListDataSource(taskListDataSource: TaskListLocalDataSource): TaskListDataSource
-
+    // Bind TaskListDataSource to TaskListLocalDataSource
+    factory<TaskListDataSource> { TaskListLocalDataSource(get()) } bind TaskListDataSource::class
 }

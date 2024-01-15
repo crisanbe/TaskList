@@ -1,23 +1,44 @@
 package com.cvelez.mvi.app
 
 import android.app.Application
+import com.cvelez.mvi.coroutines.dispatcherModule
+import com.cvelez.mvi.data.di.dataModule
+import com.cvelez.mvi.data.di.viewModelModule
 import com.cvelez.mvi.data.model.TaskListLocal
-import dagger.hilt.android.HiltAndroidApp
+import com.cvelez.mvi.domain.repository.repositoryModule
+import com.cvelez.mvi.domain.use_case.useCaseModule
 import io.realm.Realm
 import io.realm.RealmConfiguration
 import io.realm.RealmList
+import org.koin.android.ext.koin.androidContext
+import org.koin.android.ext.koin.androidLogger
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
+import org.koin.core.context.startKoin
 import java.util.*
-import javax.inject.Inject
 
-@HiltAndroidApp
-class MviTaskListApplication : Application() {
+class MviTaskListApplication : Application(), KoinComponent {
 
-    @Inject
-    lateinit var realmConfiguration: RealmConfiguration
+    private val realmConfiguration: RealmConfiguration by inject()
 
     override fun onCreate() {
         Realm.init(this)
         super.onCreate()
+
+        startKoin {
+            androidLogger()
+            androidContext(this@MviTaskListApplication)
+            modules(
+                listOf(
+                    appModule,
+                    dispatcherModule,
+                    dataModule,
+                    repositoryModule,
+                    useCaseModule,
+                    viewModelModule
+                )
+            )
+        }
         initWithPreconditionData()
     }
 

@@ -3,13 +3,12 @@ package com.cvelez.mvi.data
 import com.cvelez.mvi.data.model.TaskListLocal
 import io.realm.Realm
 import io.realm.RealmConfiguration
-import javax.inject.Inject
 
 interface TaskListDataSource {
     suspend fun getTaskList(): List<TaskListLocal>
 }
 
-class TaskListLocalDataSource @Inject constructor(
+class TaskListLocalDataSource (
     private val realmConfiguration: RealmConfiguration
 ) : TaskListDataSource {
 

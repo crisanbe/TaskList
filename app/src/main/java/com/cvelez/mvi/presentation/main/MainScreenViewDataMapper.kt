@@ -1,9 +1,8 @@
 package com.cvelez.mvi.presentation.main
 
 import com.cvelez.mvi.domain.entities.TaskList
-import javax.inject.Inject
 
-class MainScreenViewDataMapper @Inject constructor() {
+class MainScreenViewDataMapper () {
 
     fun buildScreen(todos: List<TaskList>): List<MainScreenItem> {
         val viewData = mutableListOf<MainScreenItem>()

@@ -1,17 +1,15 @@
 package com.cvelez.mvi.domain.repository
 
-import dagger.Binds
-import dagger.Module
-import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ViewModelComponent
-import dagger.hilt.android.scopes.ViewModelScoped
+import com.cvelez.mvi.data.TaskListDataSource
+import com.cvelez.mvi.data.TaskListLocalDataSource
+import com.cvelez.mvi.domain.mapper.TaskListMapper
+import org.koin.dsl.bind
 
-@Module
-@InstallIn(ViewModelComponent::class)
-interface RepositoryModule {
+import org.koin.dsl.module
 
-    @Binds
-    @ViewModelScoped
-    fun bindTaskListRepository(repository: TaskListRepository): ITaskListRepository
-
+val repositoryModule = module {
+    single<TaskListMapper> { TaskListMapper() } bind TaskListMapper::class
+    single<TaskListDataSource> { TaskListLocalDataSource(get()) } bind TaskListDataSource::class
+    single<TaskListRepository> { TaskListRepository(get(), get()) }
 }
+
