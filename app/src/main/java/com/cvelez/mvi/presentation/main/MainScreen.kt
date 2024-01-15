@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -19,6 +20,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.CornerSize
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.AlertDialog
 import androidx.compose.material.BottomAppBar
 import androidx.compose.material.Button
@@ -31,9 +33,11 @@ import androidx.compose.material.FloatingActionButton
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
+import androidx.compose.material.TextButton
 import androidx.compose.material.TextField
 import androidx.compose.material.TextFieldDefaults
 import androidx.compose.material.icons.Icons
@@ -248,36 +252,63 @@ private fun AddNewItemDialog(
     onDialogOkClick: (String) -> Unit,
 ) {
     var text by remember { mutableStateOf("") }
+
     AlertDialog(
         onDismissRequest = onDialogDismissClick,
         text = {
-            TextField(
-                value = text,
-                onValueChange = { newText ->
-                    text = newText
-                },
-                colors = TextFieldDefaults.textFieldColors(
-                    focusedIndicatorColor = Color.Blue,
-                    disabledIndicatorColor = Color.Blue,
-                    unfocusedIndicatorColor = Color.Blue,
-                    backgroundColor = Color.LightGray,
-                )
-            )
-        },
-        confirmButton = {
-            Button(
-                onClick = { onDialogOkClick(text) },
-                colors = ButtonDefaults.buttonColors(backgroundColor = Color.Blue)
+            Column(
+                modifier = Modifier
+                    .padding(16.dp)
+                    .fillMaxWidth()
             ) {
-                Text(text = "Ok", style = TextStyle(color = Color.White, fontSize = 12.sp))
+                Text(
+                    text = "Añadir nueva tarea",
+                    style = TextStyle(fontSize = 20.sp, fontWeight = FontWeight.Bold)
+                )
+
+                Spacer(modifier = Modifier.height(16.dp))
+
+                OutlinedTextField(
+                    value = text,
+                    onValueChange = { newText ->
+                        text = newText
+                    },
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(bottom = 16.dp),
+                    label = {
+                        Text(text = "Nombre del elemento")
+                    },
+                    colors = TextFieldDefaults.outlinedTextFieldColors(
+                        focusedBorderColor = Color.Blue,
+                        unfocusedBorderColor = Color.Gray,
+                    )
+                )
             }
         },
-        dismissButton = {
-            Button(
-                onClick = onDialogDismissClick,
-                colors = ButtonDefaults.buttonColors(backgroundColor = Color.Blue)
+        buttons = {
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(8.dp),
+                horizontalArrangement = Arrangement.End
             ) {
-                Text(text = "Cancel", style = TextStyle(color = Color.White, fontSize = 12.sp))
+                TextButton(
+                    onClick = onDialogDismissClick,
+                    modifier = Modifier
+                        .padding(end = 8.dp)
+                        .background(color = Color.Gray, shape = RoundedCornerShape(4.dp))
+                ) {
+                    Text(text = "Cancelar", color = Color.White)
+                }
+
+                Button(
+                    onClick = { onDialogOkClick(text) },
+                    modifier = Modifier
+                        .background(color = Color.Blue, shape = RoundedCornerShape(4.dp))
+                ) {
+                    Text(text = "Aceptar", color = Color.White)
+                }
             }
         }
     )

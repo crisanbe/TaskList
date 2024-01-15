@@ -1,9 +1,11 @@
 package com.cvelez.mvi.presentation.main
 
 import androidx.lifecycle.viewModelScope
+import arrow.core.Either
 import com.cvelez.mvi.base.BaseViewModel
 import com.cvelez.mvi.base.Reducer
 import com.cvelez.mvi.base.TimeCapsule
+import com.cvelez.mvi.domain.entities.TaskList
 import com.cvelez.mvi.domain.use_case.IGetTaskListUseCase
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.StateFlow
@@ -26,10 +28,25 @@ class MainViewModel (
 
     init {
         viewModelScope.launch(dispatcher) {
-            val data = getTodos.invoke()
-            sendEvent(MainScreenUiEvent.ShowData(viewMapper.buildScreen(data)))
+            val result: Either<Throwable, List<TaskList>> = try {
+                getTodos.invoke()
+            } catch (e: Exception) {
+                Either.Left(e)
+            }
+
+            result.fold(
+                ifLeft = { throwable ->
+                    // Manejar el error aquí
+                    sendEvent(MainScreenUiEvent.Error(throwable.message ?: "Error desconocido"))
+                },
+                ifRight = { data ->
+                    // Procesar y mostrar los datos exitosos
+                    sendEvent(MainScreenUiEvent.ShowData(viewMapper.buildScreen(data)))
+                }
+            )
         }
     }
+
 
     private fun sendEvent(event: MainScreenUiEvent) {
         reducer.sendEvent(event)
@@ -83,6 +100,10 @@ class MainViewModel (
                     val newList = oldState.data.toMutableList()
                     newList[event.index] = (newList[event.index] as MainScreenItem.MainScreenTodoItem).copy(isChecked = event.isChecked)
                     setState(oldState.copy(data = newList))
+                }
+
+                else -> {
+                    MainScreenUiEvent.Error(errorMessage = "Error")
                 }
             }
         }

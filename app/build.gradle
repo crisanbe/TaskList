@@ -79,7 +79,12 @@ dependencies {
     implementation("io.insert-koin:koin-androidx-compose:3.5.3")
 
     //ArrowKT
-    implementation("io.arrow-kt:arrow-core:1.1.2")
+    implementation(platform("io.arrow-kt:arrow-stack:1.2.0"))
+    // no versions on libraries
+    implementation("io.arrow-kt:arrow-core")
+    implementation("io.arrow-kt:arrow-fx-coroutines")
+    implementation("io.arrow-kt:arrow-optics:1.2.0")
+
 
     //coroutines
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version"

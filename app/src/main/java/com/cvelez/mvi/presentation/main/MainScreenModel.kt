@@ -12,6 +12,7 @@ sealed class MainScreenUiEvent : UiEvent {
     data class DeleteItem(val index: Int) : MainScreenUiEvent()
     data class OnItemCheckedChanged(val index: Int, val isChecked: Boolean) : MainScreenUiEvent()
     object DismissDialog : MainScreenUiEvent()
+    data class Error(val errorMessage: String) : MainScreenUiEvent()
 }
 
 @Immutable

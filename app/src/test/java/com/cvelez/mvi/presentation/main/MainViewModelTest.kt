@@ -1,5 +1,8 @@
 package com.cvelez.mvi.presentation.main
 
+import arrow.core.Either
+import arrow.core.left
+import arrow.core.right
 import com.cvelez.mvi.domain.entities.TaskList
 import com.cvelez.mvi.domain.use_case.IGetTaskListUseCase
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -63,17 +66,16 @@ class MainViewModelTest {
         assertTrue(item.isChecked)
     }
 
-    private fun prepareData(): List<TaskList> {
-        return listOf(
-            TaskList(
-                isChecked = false,
-                text = ITEM1_ID,
-            ),
-            TaskList(
-                isChecked = false,
-                text = ITEM2_ID,
+    private fun prepareData(): Either<Throwable, List<TaskList>> {
+        return try {
+            val taskList = listOf(
+                TaskList(isChecked = false, text = ITEM1_ID),
+                TaskList(isChecked = false, text = ITEM2_ID)
             )
-        )
+            taskList.right()
+        } catch (e: Throwable) {
+            e.left()
+        }
     }
 
     companion object {
