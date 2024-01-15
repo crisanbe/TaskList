@@ -3,11 +3,11 @@
 Una App para crear tareas con dos sesiones completas y pendientes.,
 
 Proyecto
-[https://i.imgur.com/ILRKvafl.png](https://i.imgur.com/396ZlMZl.png).
+![](https://i.imgur.com/ILRKvafl.png)![](https://i.imgur.com/396ZlMZl.png)
 
 # Características principales
 1. Kotlin
-1. Arquitectura MVI - 
+1. Arquitectura MVI -
 1. Jetpack Compose
 1. MutableStateOf
 1. UIEvent
